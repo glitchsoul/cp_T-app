@@ -193,23 +193,25 @@ ACCENT = "#2563EB"
 
 
 def styled_figure(fig: go.Figure, height: int = 520) -> go.Figure:
-    """Apply the clean, minimalist chart theme."""
+    """Apply the clean, minimalist chart theme with high-contrast text."""
     fig.update_layout(
         template="plotly_white",
         height=height,
         margin=dict(l=70, r=25, t=30, b=60),
-        font=dict(family="Inter, Segoe UI, sans-serif", size=13, color="#334155"),
+        font=dict(family="Inter, Segoe UI, sans-serif", size=13, color="#1e293b"),
         hovermode="closest",
         legend=dict(
             orientation="v", yanchor="top", y=1, xanchor="left", x=1.02,
-            bgcolor="rgba(255,255,255,0)", font=dict(size=12),
+            bgcolor="rgba(255,255,255,0.9)", font=dict(size=12, color="#1e293b"),
         ),
         plot_bgcolor="white", paper_bgcolor="white",
     )
-    fig.update_xaxes(showgrid=True, gridcolor="#EEF2F7", zeroline=False,
-                     linecolor="#CBD5E1", ticks="outside", tickcolor="#CBD5E1")
-    fig.update_yaxes(showgrid=True, gridcolor="#EEF2F7", zeroline=False,
-                     linecolor="#CBD5E1", ticks="outside", tickcolor="#CBD5E1")
+    fig.update_xaxes(showgrid=True, gridcolor="#E2E8F0", zeroline=False,
+                     linecolor="#64748b", ticks="outside", tickcolor="#64748b",
+                     tickfont=dict(color="#1e293b", size=12), title_font=dict(color="#1e293b", size=13))
+    fig.update_yaxes(showgrid=True, gridcolor="#E2E8F0", zeroline=False,
+                     linecolor="#64748b", ticks="outside", tickcolor="#64748b",
+                     tickfont=dict(color="#1e293b", size=12), title_font=dict(color="#1e293b", size=13))
     return fig
 
 
