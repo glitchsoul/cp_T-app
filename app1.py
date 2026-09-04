@@ -39,9 +39,9 @@ NUMERIC = ["tmin", "tmax", "a0", "a1", "a2", "a3", "cp298", "molar", "density"]
 
 # Clean, distinguishable palette for overlaid curves (light-theme friendly).
 PALETTE = [
-    "#2563EB", "#DC2626", "#059669", "#D97706", "#7C3AED", "#0891B2",
-    "#DB2777", "#65A30D", "#4B5563", "#B45309", "#0EA5E9", "#9333EA",
-    "#16A34A", "#E11D48", "#7C2D12", "#1E40AF",
+    "#38BDF8", "#F87171", "#34D399", "#FBBF24", "#A78BFA", "#22D3EE",
+    "#F472B6", "#ACC31E", "#9CA3AF", "#FBBF24", "#38BDF8", "#C084FC",
+    "#4ADE80", "#FB7185", "#FDBA74", "#60A5FA",
 ]
 
 # Physically plausible band for specific heat (J/kg*K). Anything outside is a
@@ -167,28 +167,37 @@ def rank_materials(materials: dict, T: float) -> pd.DataFrame:
 
 # --------------------------------------------------------------------------- #
 #  Streamlit UI
-# ---------------------------------------------------------------------------
+# --------------------------------------------------------------------------- #
 CUSTOM_CSS = """
 <style>
-    /* Force main container to have a clean white background and dark text for absolute legibility */
-    .stApp {background-color: #FFFFFF !important; color: #0f172a !important;}
-    .block-container {padding-top: 2.2rem; padding-bottom: 3rem; max-width: 1250px; background-color: #FFFFFF !important;}
+    /* Dark mode for entire application */
+    .stApp {background-color: #0f172a !important; color: #f8fafc !important;}
+    .block-container {padding-top: 2.2rem; padding-bottom: 3rem; max-width: 1250px; background-color: #0f172a !important;}
     
-    h1, h2, h3, h4, h5, h6 {letter-spacing: -0.01em; color: #0f172a !important;}
-    p, span, label, div {color: #334155 !important;}
+    h1, h2, h3, h4, h5, h6 {letter-spacing: -0.01em; color: #ffffff !important;}
+    p, span, label, div, .stMarkdown {color: #f1f5f9 !important;}
 
     /* app title & subtitle */
-    .app-title {font-size: 1.9rem; font-weight: 700; color: #0f172a !important; margin-bottom: 0.1rem;}
-    .app-sub  {color: #64748b !important; font-size: 0.95rem; margin-bottom: 0.4rem;}
+    .app-title {font-size: 1.9rem; font-weight: 700; color: #ffffff !important; margin-bottom: 0.1rem;}
+    .app-sub  {color: #cbd5e1 !important; font-size: 0.95rem; margin-bottom: 0.4rem;}
 
-    /* Sidebar styling: clean light background with dark text */
-    section[data-testid="stSidebar"] {background-color: #F8FAFC !important; border-right: 1px solid #E2E8F0;}
+    /* Sidebar styling: dark slate with white text */
+    section[data-testid="stSidebar"] {background-color: #1e293b !important; border-right: 1px solid #334155;}
     section[data-testid="stSidebar"] p, section[data-testid="stSidebar"] span, section[data-testid="stSidebar"] label, section[data-testid="stSidebar"] div, section[data-testid="stSidebar"] h1, section[data-testid="stSidebar"] h2, section[data-testid="stSidebar"] h3 {
-        color: #1e293b !important;
+        color: #f8fafc !important;
     }
     
+    /* Multiselect / list tags changed to light blue (#0284c7 with white text) */
+    div[data-baseweb="tag"] {
+        background-color: #0284c7 !important;
+        color: #ffffff !important;
+    }
+    div[data-baseweb="tag"] span {
+        color: #ffffff !important;
+    }
+
     /* Input widgets and search boxes */
-    input {color: #0f172a !important; background-color: #FFFFFF !important;}
+    input {color: #ffffff !important; background-color: #1e293b !important;}
 
     .stTabs [data-baseweb="tab-list"] {gap: 6px;}
     .stTabs [data-baseweb="tab"] {border-radius: 8px 8px 0 0;}
@@ -197,29 +206,29 @@ CUSTOM_CSS = """
 </style>
 """
 
-ACCENT = "#2563EB"
+ACCENT = "#38BDF8"
 
 
 def styled_figure(fig: go.Figure, height: int = 520) -> go.Figure:
-    """Apply the clean, minimalist chart theme with high-contrast text."""
+    """Apply the clean, dark chart theme with white text."""
     fig.update_layout(
-        template="plotly_white",
+        template="plotly_dark",
         height=height,
         margin=dict(l=70, r=25, t=30, b=60),
-        font=dict(family="Inter, Segoe UI, sans-serif", size=13, color="#1e293b"),
+        font=dict(family="Inter, Segoe UI, sans-serif", size=13, color="#f8fafc"),
         hovermode="closest",
         legend=dict(
             orientation="v", yanchor="top", y=1, xanchor="left", x=1.02,
-            bgcolor="rgba(255,255,255,0.9)", font=dict(size=12, color="#1e293b"),
+            bgcolor="rgba(30,41,59,0.8)", font=dict(size=12, color="#f8fafc"),
         ),
-        plot_bgcolor="white", paper_bgcolor="white",
+        plot_bgcolor="#1e293b", paper_bgcolor="#0f172a",
     )
-    fig.update_xaxes(showgrid=True, gridcolor="#E2E8F0", zeroline=False,
+    fig.update_xaxes(showgrid=True, gridcolor="#334155", zeroline=False,
                      linecolor="#64748b", ticks="outside", tickcolor="#64748b",
-                     tickfont=dict(color="#1e293b", size=12), title_font=dict(color="#1e293b", size=13))
-    fig.update_yaxes(showgrid=True, gridcolor="#E2E8F0", zeroline=False,
+                     tickfont=dict(color="#f8fafc", size=12), title_font=dict(color="#f8fafc", size=13))
+    fig.update_yaxes(showgrid=True, gridcolor="#334155", zeroline=False,
                      linecolor="#64748b", ticks="outside", tickcolor="#64748b",
-                     tickfont=dict(color="#1e293b", size=12), title_font=dict(color="#1e293b", size=13))
+                     tickfont=dict(color="#f8fafc", size=12), title_font=dict(color="#f8fafc", size=13))
     return fig
 
 
@@ -255,25 +264,29 @@ def main() -> None:
 
     # ---- Sidebar controls ---------------------------------------------------
     with st.sidebar:
-        st.subheader("🔎 Find Materials")
-        cats = st.multiselect("Filter by Category", cats_all, default=cats_all)
+        st.subheader("🔎 Find materials")
+        query = st.text_input("Search by name or formula",
+                              placeholder="e.g. copper, Al2O3, nylon…").strip().lower()
+        cats = st.multiselect("Categories", cats_all, default=cats_all)
 
         def visible(name: str) -> bool:
             m = materials[name]
             if m["category"] not in cats:
                 return False
+            if query and query not in name.lower() and query not in m["formula"].lower():
+                return False
             return True
 
         options = [n for n in names_all if visible(n)]
 
+        st.caption(f"{len(options)} of {len(names_all)} materials match")
+
         defaults = [n for n in ["Aluminium", "Copper", "Alumina (Al₂O₃)",
                                  "Polyethylene HDPE — solid"] if n in options]
-
-        st.caption(f"Select from {len(options)} available materials:")
         chosen = st.multiselect(
-            "Search & select materials", options,
+            "Materials to plot", options,
             default=defaults or options[:3],
-            help="Type any letters (e.g. 'co' for copper) to instantly search and select materials.",
+            help="Select one or several materials to overlay and compare.",
         )
 
         st.subheader("🌡️ Temperature window")
