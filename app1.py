@@ -247,25 +247,29 @@ def main() -> None:
 
     # ---- Sidebar controls ---------------------------------------------------
     with st.sidebar:
-        st.subheader("🔎 Select Materials")
-        cats = st.multiselect("Filter by Category", cats_all, default=cats_all)
+        st.subheader("🔎 Find materials")
+        query = st.text_input("Search by name or formula",
+                              placeholder="e.g. copper, Al2O3, nylon…").strip().lower()
+        cats = st.multiselect("Categories", cats_all, default=cats_all)
 
         def visible(name: str) -> bool:
             m = materials[name]
             if m["category"] not in cats:
                 return False
+            if query and query not in name.lower() and query not in m["formula"].lower():
+                return False
             return True
 
         options = [n for n in names_all if visible(n)]
 
+        st.caption(f"{len(options)} of {len(names_all)} materials match")
+
         defaults = [n for n in ["Aluminium", "Copper", "Alumina (Al₂O₃)",
                                  "Polyethylene HDPE — solid"] if n in options]
-        
-        st.caption(f"Showing {len(options)} materials across selected categories. Type below to search:")
         chosen = st.multiselect(
-            "Search & select materials", options,
+            "Materials to plot", options,
             default=defaults or options[:3],
-            help="Click here and type any letter or name (e.g., 'alumin', 'cu') to instantly search and select materials.",
+            help="Select one or several materials to overlay and compare.",
         )
 
         st.subheader("🌡️ Temperature window")
@@ -371,7 +375,7 @@ def main() -> None:
                 "Material": m["name"],
                 "Formula": m["formula"],
                 "Category": m["category"],
-                "Valid T range (K)": f"{m['tmin']:.0f} – {m['tmax']:_0f}" if False else f"{m['tmin']:.0f} – {m['tmax']:.0f}",
+                "Valid T range (K)": f"{m['tmin']:.0f} – {m['tmax']:.0f}",
                 "Cp @298 K (J/kg·K)": (None if not np.isfinite(m["cp298"])
                                        else round(m["cp298"], 1)),
                 "Molar mass (g/mol)": (None if not np.isfinite(m["molar"])
