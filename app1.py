@@ -58,7 +58,7 @@ CP_HI = 20000.0
 
 
 # ============================================================
-# CSS – COMPLETE REDESIGN OF SIDEBAR MULTISELECT
+# CSS – DARKER BACKGROUND + FORCED MULTISELECT
 # ============================================================
 
 st.markdown(
@@ -66,11 +66,11 @@ st.markdown(
 <style>
 
 /* ==========================================================
-   GLOBAL – dark text, light background
+   GLOBAL – darker gray background (7/10)
    ========================================================== */
 
 html, body, .stApp, [data-testid="stAppViewContainer"], [data-testid="stMain"] {
-    background: #e2e4e7 !important;
+    background: #c4c8cc !important;   /* darker gray */
     color: #1a1c1e !important;
 }
 
@@ -81,14 +81,14 @@ html, body, .stApp, [data-testid="stAppViewContainer"], [data-testid="stMain"] {
 }
 
 header[data-testid="stHeader"] {
-    background: rgba(226,228,231,0.88) !important;
-    border-bottom: 1px solid #c3c7cc !important;
+    background: rgba(196,200,204,0.88) !important;
+    border-bottom: 1px solid #a8adb2 !important;
     backdrop-filter: blur(22px) !important;
 }
 
 
 /* ==========================================================
-   TEXT – dark everywhere
+   TEXT – dark
    ========================================================== */
 
 .stApp p, .stApp span, .stApp label, .stApp div, .stApp h1, .stApp h2, .stApp h3, .stApp h4 {
@@ -123,12 +123,12 @@ h3 {
 
 
 /* ==========================================================
-   SIDEBAR
+   SIDEBAR – slightly darker
    ========================================================== */
 
 section[data-testid="stSidebar"] {
-    background: linear-gradient(145deg, #eceef0, #dfe2e5) !important;
-    border-right: 1px solid #bfc4ca !important;
+    background: linear-gradient(145deg, #d5d8dc, #c8ccd0) !important;
+    border-right: 1px solid #a8adb2 !important;
     box-shadow: 7px 0 24px rgba(0,0,0,0.045) !important;
 }
 
@@ -157,7 +157,7 @@ section[data-testid="stSidebar"] [data-testid="stMarkdownContainer"] p {
 
 section[data-testid="stSidebar"] div[data-testid="stTextInput"] > div > div {
     background: rgba(250,251,252,0.72) !important;
-    border: 1px solid #bfc5cb !important;
+    border: 1px solid #a8adb2 !important;
     border-radius: 12px !important;
     box-shadow: inset 0 1px 0 rgba(255,255,255,0.9), 0 4px 13px rgba(0,0,0,0.045) !important;
     backdrop-filter: blur(18px) !important;
@@ -176,10 +176,9 @@ section[data-testid="stSidebar"] div[data-testid="stTextInput"] input::placehold
 
 
 /* ==========================================================
-   MULTISELECT BOX – COMPLETE OVERRIDE (no red/black)
+   MULTISELECT BOX – FORCED override with !important
    ========================================================== */
 
-/* The main container (the clickable area) */
 section[data-testid="stSidebar"] div[data-testid="stMultiSelect"] div[data-baseweb="select"] > div {
     background: #d4e4f7 !important;          /* soft light blue */
     border: 1px solid #8a9db0 !important;
@@ -189,29 +188,27 @@ section[data-testid="stSidebar"] div[data-testid="stMultiSelect"] div[data-basew
     min-height: 42px !important;
 }
 
-/* Focus state */
 section[data-testid="stSidebar"] div[data-testid="stMultiSelect"] div[data-baseweb="select"] > div:focus-within {
     border-color: #657a8c !important;
     box-shadow: 0 0 0 3px rgba(105,125,145,0.13) !important;
 }
 
-/* The chips (tags) – steel blue */
+/* Chips (tags) */
 section[data-testid="stSidebar"] div[data-testid="stMultiSelect"] [data-baseweb="tag"] {
-    background: #b8cfe0 !important;          /* steel blue */
+    background: #b8cfe0 !important;
     border: 1px solid #7a94a8 !important;
     border-radius: 8px !important;
     color: #1a1c1e !important;
     box-shadow: inset 0 1px 0 rgba(255,255,255,0.5) !important;
 }
 
-/* Chip text */
 section[data-testid="stSidebar"] div[data-testid="stMultiSelect"] [data-baseweb="tag"] span {
     color: #1a1c1e !important;
     font-size: 0.75rem !important;
     font-weight: 550 !important;
 }
 
-/* Close (×) icon – force gray, never red */
+/* Close (×) icon – always gray */
 section[data-testid="stSidebar"] div[data-testid="stMultiSelect"] [data-baseweb="tag"] svg {
     color: #4a5058 !important;
     fill: #4a5058 !important;
@@ -226,7 +223,7 @@ section[data-testid="stSidebar"] div[data-testid="stMultiSelect"] [data-baseweb=
 
 
 /* ==========================================================
-   DROPDOWN POPOVER – no red/black highlights
+   DROPDOWN POPOVER – no red/black
    ========================================================== */
 
 div[data-baseweb="popover"] {
@@ -245,7 +242,6 @@ div[data-baseweb="popover"] div[data-baseweb="menu"] {
     background: #eef0f2 !important;
 }
 
-/* Normal item */
 div[data-baseweb="popover"] [role="option"] {
     background: transparent !important;
     color: #1a1c1e !important;
@@ -254,20 +250,17 @@ div[data-baseweb="popover"] [role="option"] {
     margin: 2px 5px !important;
 }
 
-/* Hover – slate blue */
 div[data-baseweb="popover"] [role="option"]:hover {
     background: #cbd8e6 !important;
     color: #0a0c0e !important;
 }
 
-/* Selected (checked) – deeper slate blue */
 div[data-baseweb="popover"] [role="option"][aria-selected="true"] {
     background: #b3c9df !important;
     color: #0a0c0e !important;
     font-weight: 650 !important;
 }
 
-/* Selected + hover */
 div[data-baseweb="popover"] [role="option"][aria-selected="true"]:hover {
     background: #a3bdd6 !important;
     color: #0a0c0e !important;
@@ -289,8 +282,8 @@ section[data-testid="stSidebar"] [data-testid="stSlider"] [role="slider"] {
    ========================================================== */
 
 div[data-testid="stMetric"] {
-    background: #ebedef !important;
-    border: 1px solid #c6cbd0 !important;
+    background: #d9dde2 !important;
+    border: 1px solid #b0b5bb !important;
     border-radius: 13px !important;
     padding: 10px 14px !important;
     box-shadow: 0 3px 10px rgba(0,0,0,0.025) !important;
@@ -332,7 +325,7 @@ div[data-testid="stAlert"] p {
 
 .stTabs [data-baseweb="tab-list"] {
     background: transparent !important;
-    border-bottom: 1px solid #bfc4ca !important;
+    border-bottom: 1px solid #a8adb2 !important;
 }
 
 .stTabs [data-baseweb="tab"] {
@@ -356,7 +349,7 @@ div[data-testid="stAlert"] p {
    ========================================================== */
 
 div[data-testid="stPlotlyChart"] {
-    background: #dfe2e5 !important;
+    background: #d5d9de !important;
     border: 1px solid #8f979f !important;
     border-radius: 14px !important;
     padding: 5px !important;
@@ -398,7 +391,7 @@ div[data-testid="stDataFrame"] {
    ========================================================== */
 
 hr {
-    border-top: 1px solid #c1c6cb !important;
+    border-top: 1px solid #a8adb2 !important;
 }
 
 </style>
@@ -408,7 +401,7 @@ hr {
 
 
 # ============================================================
-# DATA FUNCTIONS
+# DATA FUNCTIONS (unchanged)
 # ============================================================
 
 def build_materials(df):
@@ -647,7 +640,7 @@ if flagged:
 
 
 # ============================================================
-# CHART TITLE & SUBTITLE (dark text)
+# CHART TITLE & SUBTITLE (dark)
 # ============================================================
 
 st.subheader("Cp vs Temperature")
@@ -656,7 +649,7 @@ st.caption(f"{len(chosen)} materials  ·  {t_lo:.0f}–{t_hi:.0f} K  ·  J kg⁻
 
 
 # ============================================================
-# MAIN GRAPH – with horizontal & vertical grid lines
+# MAIN GRAPH – with both grid lines
 # ============================================================
 
 fig = go.Figure()
@@ -688,8 +681,8 @@ for index, name in enumerate(chosen):
 
 fig.update_layout(
     height=530,
-    paper_bgcolor="#dfe2e5",
-    plot_bgcolor="#f3f4f5",
+    paper_bgcolor="#d5d9de",
+    plot_bgcolor="#eaedf0",
     margin=dict(l=80, r=35, t=25, b=70),
     font=dict(family="Arial, sans-serif", size=11, color="#2c3238"),
     hovermode="closest",
@@ -709,7 +702,7 @@ fig.update_layout(
         tickcolor="#7c858e",
         tickfont=dict(size=10, color="#2c3238"),
         showgrid=True,
-        gridcolor="#d9dde1",
+        gridcolor="#c0c6cc",
         zeroline=False
     ),
     yaxis=dict(
@@ -722,7 +715,7 @@ fig.update_layout(
         tickcolor="#7c858e",
         tickfont=dict(size=10, color="#2c3238"),
         showgrid=True,
-        gridcolor="#d9dde1",
+        gridcolor="#c0c6cc",
         zeroline=False
     )
 )
@@ -741,7 +734,7 @@ st.caption("Drag to zoom · double-click to reset · camera icon to export.")
 
 
 # ============================================================
-# TABS
+# TABS (unchanged)
 # ============================================================
 
 tab_compare, tab_materials, tab_rankings, tab_data = st.tabs(
@@ -801,8 +794,8 @@ with tab_compare:
 
         bar.update_layout(
             height=max(280, 70 * len(comparison_rows)),
-            paper_bgcolor="#dfe2e5",
-            plot_bgcolor="#f3f4f5",
+            paper_bgcolor="#d5d9de",
+            plot_bgcolor="#eaedf0",
             margin=dict(l=25, r=70, t=25, b=65),
             bargap=0.32,
             xaxis=dict(
@@ -814,7 +807,7 @@ with tab_compare:
                 mirror=True,
                 linecolor="#7c858e",
                 linewidth=1.3,
-                gridcolor="#d9dde1",
+                gridcolor="#c0c6cc",
                 zeroline=False,
                 tickfont=dict(size=10, color="#2c3238")
             ),
@@ -920,8 +913,8 @@ with tab_rankings:
 
         ranking_fig.update_layout(
             height=max(350, 34 * len(ranking_view)),
-            paper_bgcolor="#dfe2e5",
-            plot_bgcolor="#f3f4f5",
+            paper_bgcolor="#d5d9de",
+            plot_bgcolor="#eaedf0",
             margin=dict(l=30, r=65, t=25, b=65),
             bargap=0.28,
             xaxis=dict(
@@ -932,7 +925,7 @@ with tab_rankings:
                 showline=True,
                 mirror=True,
                 linecolor="#7c858e",
-                gridcolor="#d9dde1",
+                gridcolor="#c0c6cc",
                 zeroline=False,
                 tickfont=dict(size=10, color="#2c3238")
             ),
