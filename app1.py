@@ -180,7 +180,8 @@ CUSTOM_CSS = """
         background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 12px;
         padding: 0.8rem 1rem;
     }
-    section[data-testid="stSidebar"] {background: #F8FAFC; border-right: 1px solid #E2E8F0;}
+    section[data-testid="stSidebar"] {background: #F8FAFC !important; border-right: 1px solid #E2E8F0;}
+    section[data-testid="stSidebar"] p, section[data-testid="stSidebar"] span, section[data-testid="stSidebar"] label, section[data-testid="stSidebar"] div {color: #1e293b !important;}
     .stTabs [data-baseweb="tab-list"] {gap: 6px;}
     .stTabs [data-baseweb="tab"] {border-radius: 8px 8px 0 0;}
     footer {visibility: hidden;}
