@@ -167,21 +167,29 @@ def rank_materials(materials: dict, T: float) -> pd.DataFrame:
 
 # --------------------------------------------------------------------------- #
 #  Streamlit UI
-# --------------------------------------------------------------------------- #
+# ---------------------------------------------------------------------------
 CUSTOM_CSS = """
 <style>
-    .block-container {padding-top: 2.2rem; padding-bottom: 3rem; max-width: 1250px;}
-    h1, h2, h3 {letter-spacing: -0.01em;}
-    /* app title */
-    .app-title {font-size: 1.9rem; font-weight: 700; color: #0f172a; margin-bottom: 0.1rem;}
-    .app-sub  {color: #64748b; font-size: 0.95rem; margin-bottom: 0.4rem;}
-    /* metric-style summary cards */
-    div[data-testid="stMetric"] {
-        background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 12px;
-        padding: 0.8rem 1rem;
+    /* Force main container to have a clean white background and dark text for absolute legibility */
+    .stApp {background-color: #FFFFFF !important; color: #0f172a !important;}
+    .block-container {padding-top: 2.2rem; padding-bottom: 3rem; max-width: 1250px; background-color: #FFFFFF !important;}
+    
+    h1, h2, h3, h4, h5, h6 {letter-spacing: -0.01em; color: #0f172a !important;}
+    p, span, label, div {color: #334155 !important;}
+
+    /* app title & subtitle */
+    .app-title {font-size: 1.9rem; font-weight: 700; color: #0f172a !important; margin-bottom: 0.1rem;}
+    .app-sub  {color: #64748b !important; font-size: 0.95rem; margin-bottom: 0.4rem;}
+
+    /* Sidebar styling: clean light background with dark text */
+    section[data-testid="stSidebar"] {background-color: #F8FAFC !important; border-right: 1px solid #E2E8F0;}
+    section[data-testid="stSidebar"] p, section[data-testid="stSidebar"] span, section[data-testid="stSidebar"] label, section[data-testid="stSidebar"] div, section[data-testid="stSidebar"] h1, section[data-testid="stSidebar"] h2, section[data-testid="stSidebar"] h3 {
+        color: #1e293b !important;
     }
-    section[data-testid="stSidebar"] {background: #F8FAFC !important; border-right: 1px solid #E2E8F0;}
-    section[data-testid="stSidebar"] p, section[data-testid="stSidebar"] span, section[data-testid="stSidebar"] label, section[data-testid="stSidebar"] div {color: #1e293b !important;}
+    
+    /* Input widgets and search boxes */
+    input {color: #0f172a !important; background-color: #FFFFFF !important;}
+
     .stTabs [data-baseweb="tab-list"] {gap: 6px;}
     .stTabs [data-baseweb="tab"] {border-radius: 8px 8px 0 0;}
     footer {visibility: hidden;}
@@ -247,29 +255,25 @@ def main() -> None:
 
     # ---- Sidebar controls ---------------------------------------------------
     with st.sidebar:
-        st.subheader("🔎 Find materials")
-        query = st.text_input("Search by name or formula",
-                              placeholder="e.g. copper, Al2O3, nylon…").strip().lower()
-        cats = st.multiselect("Categories", cats_all, default=cats_all)
+        st.subheader("🔎 Find Materials")
+        cats = st.multiselect("Filter by Category", cats_all, default=cats_all)
 
         def visible(name: str) -> bool:
             m = materials[name]
             if m["category"] not in cats:
                 return False
-            if query and query not in name.lower() and query not in m["formula"].lower():
-                return False
             return True
 
         options = [n for n in names_all if visible(n)]
 
-        st.caption(f"{len(options)} of {len(names_all)} materials match")
-
         defaults = [n for n in ["Aluminium", "Copper", "Alumina (Al₂O₃)",
                                  "Polyethylene HDPE — solid"] if n in options]
+
+        st.caption(f"Select from {len(options)} available materials:")
         chosen = st.multiselect(
-            "Materials to plot", options,
+            "Search & select materials", options,
             default=defaults or options[:3],
-            help="Select one or several materials to overlay and compare.",
+            help="Type any letters (e.g. 'co' for copper) to instantly search and select materials.",
         )
 
         st.subheader("🌡️ Temperature window")
