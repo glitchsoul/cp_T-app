@@ -39,36 +39,37 @@ ACCENT = "#0071E3"
 
 
 # ============================================================
-# APPLE-LIKE MINIMAL UI
+# APPLE STYLE
 # ============================================================
 
 CUSTOM_CSS = """
 <style>
 
-:root {
-    --bg: #f5f5f7;
-    --surface: #ffffff;
-    --surface-soft: #fbfbfd;
-    --text: #1d1d1f;
-    --muted: #6e6e73;
-    --line: #d2d2d7;
-    --accent: #0071e3;
-    --accent-soft: #e8f2ff;
+/* ==========================================================
+   GLOBAL APP
+========================================================== */
+
+html, body {
+    background: #f5f5f7 !important;
 }
 
-/* ---------------------------------------------------------
-   GLOBAL
---------------------------------------------------------- */
-
-.stApp {
-    background: var(--bg) !important;
-    color: var(--text) !important;
+.stApp,
+[data-testid="stAppViewContainer"],
+[data-testid="stAppViewContainer"] > .main,
+.main {
+    background: #f5f5f7 !important;
+    color: #1d1d1f !important;
 }
 
 .block-container {
-    max-width: 1320px;
-    padding-top: 2.3rem;
-    padding-bottom: 4rem;
+    max-width: 1320px !important;
+    padding-top: 2.2rem !important;
+    padding-bottom: 4rem !important;
+    background: #f5f5f7 !important;
+}
+
+[data-testid="stHeader"] {
+    background: rgba(245,245,247,0.92) !important;
 }
 
 #MainMenu,
@@ -76,14 +77,10 @@ footer {
     visibility: hidden;
 }
 
-header[data-testid="stHeader"] {
-    background: rgba(245, 245, 247, 0.88) !important;
-}
 
-
-/* ---------------------------------------------------------
+/* ==========================================================
    TYPOGRAPHY
---------------------------------------------------------- */
+========================================================== */
 
 html,
 body,
@@ -107,94 +104,86 @@ select {
         sans-serif !important;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    color: var(--text) !important;
+h1, h2, h3, h4, h5, h6 {
+    color: #1d1d1f !important;
     letter-spacing: -0.025em !important;
 }
 
-p,
-.stCaption,
-small {
-    color: var(--muted) !important;
+p {
+    color: #6e6e73 !important;
 }
 
 
-/* ---------------------------------------------------------
+/* ==========================================================
    HEADER
---------------------------------------------------------- */
+========================================================== */
 
 .app-header {
     display: flex;
-    align-items: flex-end;
     justify-content: space-between;
+    align-items: flex-end;
     gap: 30px;
-    margin-bottom: 2rem;
+    margin-bottom: 2.2rem;
 }
 
 .app-title {
-    font-size: clamp(2.2rem, 4vw, 3.25rem);
-    line-height: 1.02;
+    color: #1d1d1f !important;
+    font-size: clamp(2.2rem, 4vw, 3.35rem);
     font-weight: 700;
-    letter-spacing: -0.05em;
-    color: var(--text);
+    letter-spacing: -0.055em;
+    line-height: 1.02;
 }
 
 .app-sub {
     margin-top: 0.55rem;
+    color: #6e6e73 !important;
     font-size: 1rem;
-    color: var(--muted);
 }
 
 .header-meta {
     text-align: right;
-    color: var(--muted);
+    color: #6e6e73 !important;
     font-size: 0.82rem;
     line-height: 1.55;
 }
 
 .header-meta strong {
-    color: var(--text);
+    color: #1d1d1f !important;
     font-weight: 600;
 }
 
 
-/* ---------------------------------------------------------
-   SECTION TITLES
---------------------------------------------------------- */
+/* ==========================================================
+   SIDEBAR
+========================================================== */
 
-.eyebrow {
-    color: var(--muted);
-    font-size: 0.72rem;
-    font-weight: 650;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    margin-bottom: 0.4rem;
+[data-testid="stSidebar"],
+[data-testid="stSidebar"] > div:first-child,
+[data-testid="stSidebarContent"] {
+    background: #ffffff !important;
+    color: #1d1d1f !important;
 }
 
-.section-title {
-    color: var(--text);
-    font-size: 1.15rem;
-    font-weight: 650;
-    letter-spacing: -0.02em;
+[data-testid="stSidebar"] * {
+    color: #1d1d1f !important;
+}
+
+[data-testid="stSidebar"] hr {
+    border-color: #e5e5ea !important;
 }
 
 
-/* ---------------------------------------------------------
+/* ==========================================================
    INPUTS
---------------------------------------------------------- */
+========================================================== */
 
 div[data-testid="stTextInput"] input,
 div[data-testid="stNumberInput"] input {
 
-    background: var(--surface) !important;
-    color: var(--text) !important;
+    background: #ffffff !important;
+    color: #1d1d1f !important;
 
-    border: 1px solid var(--line) !important;
+    border: 1px solid #d2d2d7 !important;
     border-radius: 10px !important;
 
     min-height: 42px !important;
@@ -202,37 +191,46 @@ div[data-testid="stNumberInput"] input {
     box-shadow: none !important;
 }
 
+div[data-testid="stTextInput"] input::placeholder {
+    color: #8e8e93 !important;
+}
+
 div[data-testid="stTextInput"] input:focus,
 div[data-testid="stNumberInput"] input:focus {
 
-    border-color: var(--accent) !important;
-    box-shadow: 0 0 0 2px rgba(0,113,227,0.12) !important;
+    border-color: #0071e3 !important;
+
+    box-shadow:
+        0 0 0 3px rgba(0,113,227,0.12) !important;
 }
 
 
-/* ---------------------------------------------------------
-   SELECT / MULTISELECT
---------------------------------------------------------- */
+/* ==========================================================
+   SELECTBOX / MULTISELECT
+========================================================== */
 
 div[data-baseweb="select"] > div {
 
-    background: var(--surface) !important;
-    color: var(--text) !important;
+    background: #ffffff !important;
+    color: #1d1d1f !important;
 
-    border-color: var(--line) !important;
+    border: 1px solid #d2d2d7 !important;
     border-radius: 10px !important;
 
     box-shadow: none !important;
 }
 
+div[data-baseweb="select"] input {
+    color: #1d1d1f !important;
+}
+
 div[data-baseweb="tag"] {
 
-    background: var(--accent-soft) !important;
-    border: 0 !important;
-    border-radius: 999px !important;
+    background: #e8f2ff !important;
 
-    padding-left: 8px !important;
-    padding-right: 8px !important;
+    border: none !important;
+
+    border-radius: 999px !important;
 }
 
 div[data-baseweb="tag"] span {
@@ -240,44 +238,43 @@ div[data-baseweb="tag"] span {
 }
 
 
-/* ---------------------------------------------------------
+/* ==========================================================
    BUTTONS
---------------------------------------------------------- */
+========================================================== */
 
-button[kind="primary"],
-.stDownloadButton button {
+button[kind="primary"] {
 
-    background: var(--accent) !important;
-    color: white !important;
+    background: #0071e3 !important;
+    color: #ffffff !important;
 
-    border: 0 !important;
+    border: none !important;
     border-radius: 10px !important;
 
     font-weight: 600 !important;
 
-    transition: 0.15s ease !important;
+    transition: all 0.15s ease !important;
 }
 
-button[kind="primary"]:hover,
-.stDownloadButton button:hover {
+button[kind="primary"]:hover {
 
     background: #0067cf !important;
+
     transform: translateY(-1px);
 }
 
 button[kind="secondary"] {
 
-    background: var(--surface) !important;
-    color: var(--text) !important;
+    background: #ffffff !important;
+    color: #1d1d1f !important;
 
-    border: 1px solid var(--line) !important;
+    border: 1px solid #d2d2d7 !important;
     border-radius: 10px !important;
 }
 
 
-/* ---------------------------------------------------------
+/* ==========================================================
    SLIDER
---------------------------------------------------------- */
+========================================================== */
 
 .stSlider [data-baseweb="slider"] {
     padding-top: 0.3rem;
@@ -285,68 +282,70 @@ button[kind="secondary"] {
 
 .stSlider [role="slider"] {
 
-    background: var(--accent) !important;
-    border-color: var(--accent) !important;
+    background: #0071e3 !important;
+
+    border-color: #0071e3 !important;
 
     box-shadow: none !important;
 }
 
 
-/* ---------------------------------------------------------
+/* ==========================================================
    DIVIDERS
---------------------------------------------------------- */
+========================================================== */
 
 hr {
 
     border: 0 !important;
-    border-top: 1px solid var(--line) !important;
+
+    border-top: 1px solid #d2d2d7 !important;
 
     margin: 1.3rem 0 !important;
 }
 
 
-/* ---------------------------------------------------------
-   CHART CONTAINER
---------------------------------------------------------- */
+/* ==========================================================
+   CHART CARD
+========================================================== */
 
 .chart-shell {
 
-    background: var(--surface);
+    background: #ffffff !important;
 
-    border: 1px solid rgba(210,210,215,0.85);
+    border: 1px solid #e1e1e6 !important;
 
-    border-radius: 18px;
+    border-radius: 20px !important;
 
-    padding: 1.2rem 1.2rem 0.7rem;
+    padding: 1.25rem !important;
 
     box-shadow:
-        0 8px 30px rgba(0,0,0,0.035);
+        0 8px 30px rgba(0,0,0,0.035) !important;
 }
 
 .chart-title {
 
-    font-size: 1.22rem;
+    color: #1d1d1f !important;
+
+    font-size: 1.25rem;
 
     font-weight: 650;
 
     letter-spacing: -0.025em;
-
-    color: var(--text);
 }
 
 .chart-subtitle {
 
-    font-size: 0.86rem;
+    color: #6e6e73 !important;
 
-    color: var(--muted);
+    font-size: 0.86rem;
 
     margin-top: 0.18rem;
 }
 
 
-/* ---------------------------------------------------------
+/* ==========================================================
    CONTEXT PILLS
---------------------------------------------------------- */
+========================================================== */
 
 .context-row {
 
@@ -357,37 +356,35 @@ hr {
     flex-wrap: wrap;
 
     margin-top: 0.7rem;
-
-    margin-bottom: 0.1rem;
 }
 
 .context-pill {
 
     font-size: 0.76rem;
 
-    color: var(--muted);
+    color: #6e6e73 !important;
 
-    background: var(--surface-soft);
+    background: #fbfbfd;
 
     border: 1px solid #e5e5ea;
 
-    padding: 5px 9px;
+    padding: 5px 10px;
 
     border-radius: 999px;
 }
 
 
-/* ---------------------------------------------------------
-   RANGE WARNING
---------------------------------------------------------- */
+/* ==========================================================
+   WARNING
+========================================================== */
 
 .range-note {
 
-    background: #fff8e6;
+    background: #fff8e6 !important;
 
-    border: 1px solid #ead8a4;
+    border: 1px solid #ead8a4 !important;
 
-    color: #6b5200;
+    color: #6b5200 !important;
 
     border-radius: 10px;
 
@@ -395,89 +392,89 @@ hr {
 
     font-size: 0.82rem;
 
-    margin: 0.5rem 0 0.9rem;
+    margin: 0.6rem 0 1rem;
 }
 
 .range-note strong {
-    color: #4f3d00;
+    color: #4f3d00 !important;
 }
 
 
-/* ---------------------------------------------------------
+/* ==========================================================
    TABS
---------------------------------------------------------- */
+========================================================== */
 
 .stTabs [data-baseweb="tab-list"] {
 
-    gap: 4px;
+    gap: 5px;
 
-    border-bottom: 1px solid var(--line);
+    border-bottom: 1px solid #d2d2d7;
 
-    background: transparent;
+    background: transparent !important;
 }
 
 .stTabs [data-baseweb="tab"] {
 
-    color: var(--muted) !important;
+    color: #6e6e73 !important;
 
-    border-radius: 8px 8px 0 0 !important;
+    padding:
+        0.7rem 1rem !important;
 
-    padding: 0.65rem 1rem !important;
+    border-radius:
+        8px 8px 0 0 !important;
 
     font-weight: 550 !important;
 }
 
 .stTabs [aria-selected="true"] {
 
-    color: var(--text) !important;
+    color: #1d1d1f !important;
 
-    border-bottom-color: var(--accent) !important;
+    border-bottom:
+        2px solid #0071e3 !important;
 }
 
 
-/* ---------------------------------------------------------
+/* ==========================================================
    DATAFRAME
---------------------------------------------------------- */
+========================================================== */
 
 div[data-testid="stDataFrame"] {
 
-    border: 1px solid var(--line);
+    border:
+        1px solid #d2d2d7 !important;
 
-    border-radius: 12px;
+    border-radius:
+        12px !important;
 
     overflow: hidden;
 
-    background: white;
+    background:
+        #ffffff !important;
 }
 
 
-/* ---------------------------------------------------------
-   SIDEBAR
---------------------------------------------------------- */
+/* ==========================================================
+   INFO / SUCCESS
+========================================================== */
 
-section[data-testid="stSidebar"] {
+div[data-testid="stAlert"] {
 
-    background: var(--surface) !important;
-
-    border-right: 1px solid var(--line) !important;
-}
-
-section[data-testid="stSidebar"] * {
-    color: var(--text) !important;
+    border-radius: 12px !important;
 }
 
 
-/* ---------------------------------------------------------
+/* ==========================================================
    RESPONSIVE
---------------------------------------------------------- */
+========================================================== */
 
 @media (max-width: 800px) {
 
     .app-header {
 
-        align-items: flex-start;
-
         flex-direction: column;
+
+        align-items: flex-start;
     }
 
     .header-meta {
@@ -487,7 +484,7 @@ section[data-testid="stSidebar"] * {
 
     .block-container {
 
-        padding-top: 1.2rem;
+        padding-top: 1.2rem !important;
     }
 }
 
@@ -562,11 +559,13 @@ def build_materials(df: pd.DataFrame) -> dict:
         )
 
         m["tmin"] = min(
-            s["tmin"] for s in m["segments"]
+            s["tmin"]
+            for s in m["segments"]
         )
 
         m["tmax"] = max(
-            s["tmax"] for s in m["segments"]
+            s["tmax"]
+            for s in m["segments"]
         )
 
     return materials
@@ -599,7 +598,10 @@ def load_materials(
 
 def cp_poly(seg: dict, T):
 
-    T = np.asarray(T, dtype=float)
+    T = np.asarray(
+        T,
+        dtype=float
+    )
 
     return (
         seg["a0"]
@@ -668,7 +670,9 @@ def material_curve(
             2,
             int(
                 round(
-                    n * (hi - lo) / span
+                    n *
+                    (hi - lo) /
+                    span
                 )
             )
         )
@@ -686,8 +690,10 @@ def material_curve(
 
         C = np.where(
             np.isfinite(C)
-            & (C > CP_LO)
-            & (C < CP_HI),
+            &
+            (C > CP_LO)
+            &
+            (C < CP_HI),
             C,
             np.nan
         )
@@ -695,9 +701,13 @@ def material_curve(
         xs.append(T)
         ys.append(C)
 
-        # Break between phase segments
-        xs.append(np.array([np.nan]))
-        ys.append(np.array([np.nan]))
+        xs.append(
+            np.array([np.nan])
+        )
+
+        ys.append(
+            np.array([np.nan])
+        )
 
     if not xs:
 
@@ -719,9 +729,11 @@ def coverage_gap(
 ) -> bool:
 
     return (
-        t_lo < material["tmin"] - 1e-9
+        t_lo <
+        material["tmin"] - 1e-9
         or
-        t_hi > material["tmax"] + 1e-9
+        t_hi >
+        material["tmax"] + 1e-9
     )
 
 
@@ -797,8 +809,13 @@ def styled_figure(
         ),
 
         font=dict(
-            family="-apple-system, BlinkMacSystemFont, Inter, Segoe UI, sans-serif",
+
+            family=
+            "-apple-system, BlinkMacSystemFont, "
+            "Inter, Segoe UI, sans-serif",
+
             size=13,
+
             color="#1d1d1f"
         ),
 
@@ -814,7 +831,8 @@ def styled_figure(
             xanchor="left",
             x=1.02,
 
-            bgcolor="rgba(255,255,255,0.95)",
+            bgcolor=
+            "rgba(255,255,255,0.96)",
 
             bordercolor="#d2d2d7",
 
@@ -823,7 +841,7 @@ def styled_figure(
             font=dict(
                 size=12,
                 color="#1d1d1f"
-            ),
+            )
         ),
 
         plot_bgcolor="#ffffff",
@@ -853,7 +871,7 @@ def styled_figure(
         title_font=dict(
             color="#1d1d1f",
             size=13
-        ),
+        )
     )
 
     fig.update_yaxes(
@@ -878,28 +896,34 @@ def styled_figure(
         title_font=dict(
             color="#1d1d1f",
             size=13
-        ),
+        )
     )
 
     return fig
 
 
 # ============================================================
-# MAIN APPLICATION
+# MAIN
 # ============================================================
 
 def main():
 
     st.set_page_config(
 
-        page_title="Specific Heat Explorer",
+        page_title=
+        "Specific Heat Explorer",
 
         page_icon="◦",
 
         layout="wide",
 
-        initial_sidebar_state="expanded",
+        initial_sidebar_state=
+        "expanded"
     )
+
+    # --------------------------------------------------------
+    # APPLY UI
+    # --------------------------------------------------------
 
     st.markdown(
         CUSTOM_CSS,
@@ -907,7 +931,7 @@ def main():
     )
 
     # --------------------------------------------------------
-    # LOAD DATA
+    # LOAD MATERIALS
     # --------------------------------------------------------
 
     try:
@@ -958,7 +982,8 @@ def main():
         '</div>'
 
         '<div class="app-sub">'
-        'Interactive C<sub>p</sub>–T database for engineering materials'
+        'Interactive C<sub>p</sub>–T database '
+        'for engineering materials'
         '</div>'
 
         '</div>'
@@ -989,7 +1014,8 @@ def main():
 
             "Search",
 
-            placeholder="Search material or formula..."
+            placeholder=
+            "Search material or formula..."
         ).strip().lower()
 
         cats = st.multiselect(
@@ -1012,8 +1038,11 @@ def main():
             if query:
 
                 if (
-                    query not in name.lower()
+                    query not in
+                    name.lower()
+
                     and
+
                     query not in
                     m["formula"].lower()
                 ):
@@ -1023,19 +1052,25 @@ def main():
             return True
 
         options = [
+
             n
+
             for n in names_all
+
             if visible(n)
         ]
 
         st.caption(
+
             f"{len(options)} of "
             f"{len(names_all)} materials"
         )
 
         defaults = [
 
-            n for n in [
+            n
+
+            for n in [
 
                 "Aluminium",
 
@@ -1056,9 +1091,12 @@ def main():
 
             options,
 
-            default=defaults or options[:3],
+            default=
+            defaults or options[:3],
 
-            help="Select one or more materials to compare."
+            help=
+            "Select one or more materials "
+            "to compare."
         )
 
         st.divider()
@@ -1093,16 +1131,8 @@ def main():
             step=10
         )
 
-        if t_hi <= t_lo:
-
-            t_hi = min(
-                t_lo + 10,
-                int(np.ceil(g_hi))
-            )
-
-            t_lo = t_hi - 10
-
         st.caption(
+
             "Curves are shown only within "
             "their validated ranges."
         )
@@ -1136,7 +1166,7 @@ def main():
         st.stop()
 
     # --------------------------------------------------------
-    # VALIDATION WARNING
+    # VALIDATION
     # --------------------------------------------------------
 
     flagged = [
@@ -1161,7 +1191,8 @@ def main():
         msg = "<br>".join(
 
             f"• <strong>{nm}</strong> — "
-            f"validated range {lo:.0f}–{hi:.0f} K"
+            f"validated range "
+            f"{lo:.0f}–{hi:.0f} K"
 
             for nm, lo, hi in flagged
         )
@@ -1170,7 +1201,9 @@ def main():
 
             '<div class="range-note">'
 
-            '<strong>Outside validated range</strong><br>'
+            '<strong>'
+            'Outside validated range'
+            '</strong><br>'
 
             f'{msg}'
 
@@ -1180,7 +1213,7 @@ def main():
         )
 
     # --------------------------------------------------------
-    # MAIN CHART
+    # MAIN GRAPH
     # --------------------------------------------------------
 
     fig = go.Figure()
@@ -1190,8 +1223,11 @@ def main():
         m = materials[n]
 
         T, C = material_curve(
+
             m,
+
             t_lo,
+
             t_hi
         )
 
@@ -1218,7 +1254,7 @@ def main():
 
                     color=color,
 
-                    width=2.7
+                    width=2.8
                 ),
 
                 connectgaps=False,
@@ -1227,9 +1263,11 @@ def main():
 
                     f"<b>{n}</b><br>"
 
-                    "T = %{x:.0f} K<br>"
+                    "Temperature: "
+                    "%{x:.0f} K<br>"
 
-                    "Cp = %{y:.1f} J/kg·K"
+                    "Cp: "
+                    "%{y:.1f} J/kg·K"
 
                     "<extra></extra>"
                 )
@@ -1245,7 +1283,10 @@ def main():
         "Specific heat, Cp (J kg⁻¹ K⁻¹)"
     )
 
-    # Chart header
+    # --------------------------------------------------------
+    # GRAPH HEADER
+    # --------------------------------------------------------
+
     st.markdown(
 
         '<div class="chart-shell">'
@@ -1291,7 +1332,8 @@ def main():
 
             "toImageButtonOptions": {
 
-                "filename": "Cp_vs_T",
+                "filename":
+                "Cp_vs_T",
 
                 "scale": 2
             }
@@ -1299,12 +1341,13 @@ def main():
     )
 
     st.caption(
+
         "Drag to zoom · double-click to reset · "
-        "use the camera icon to export the graph."
+        "use the camera icon to export."
     )
 
     # --------------------------------------------------------
-    # ANALYSIS NAVIGATION
+    # TABS
     # --------------------------------------------------------
 
     tab_cmp, tab_info, tab_rank, tab_data = st.tabs(
@@ -1356,7 +1399,9 @@ def main():
         for n in chosen:
 
             v = cp_value(
+
                 materials[n],
+
                 Tc
             )
 
@@ -1373,17 +1418,23 @@ def main():
         if rows:
 
             rows.sort(
+
                 key=lambda x: x[1],
+
                 reverse=True
             )
 
             labels = [
+
                 r[0]
+
                 for r in rows
             ]
 
             vals = [
+
                 r[1]
+
                 for r in rows
             ]
 
@@ -1410,7 +1461,8 @@ def main():
 
                         "<b>%{y}</b><br>"
 
-                        "Cp = %{x:.1f} J/kg·K"
+                        "Cp = "
+                        "%{x:.1f} J/kg·K"
 
                         "<extra></extra>"
                     )
@@ -1420,6 +1472,7 @@ def main():
             bar.update_layout(
 
                 xaxis_title=(
+
                     f"Specific heat at "
                     f"{Tc:.0f} K "
                     f"(J kg⁻¹ K⁻¹)"
@@ -1433,7 +1486,9 @@ def main():
             st.plotly_chart(
 
                 styled_figure(
+
                     bar,
+
                     height=max(
                         260,
                         60 * len(rows)
@@ -1463,7 +1518,7 @@ def main():
             )
 
     # ========================================================
-    # MATERIAL DETAILS
+    # MATERIAL INFORMATION
     # ========================================================
 
     with tab_info:
@@ -1473,7 +1528,8 @@ def main():
         )
 
         st.caption(
-            "Properties and provenance for the selected materials."
+            "Properties and provenance for "
+            "the selected materials."
         )
 
         recs = []
@@ -1549,11 +1605,6 @@ def main():
             hide_index=True
         )
 
-        st.caption(
-            "Values are traceable to the thermodynamic "
-            "source stored with each material."
-        )
-
     # ========================================================
     # RANKINGS
     # ========================================================
@@ -1565,12 +1616,11 @@ def main():
         )
 
         st.caption(
-            "Rank the full database by specific heat at a selected temperature."
+            "Rank materials by specific heat "
+            "at a selected temperature."
         )
 
-        c1, c2 = st.columns(
-            [1, 1]
-        )
+        c1, c2 = st.columns(2)
 
         with c1:
 
@@ -1605,7 +1655,9 @@ def main():
             )
 
         rk = rank_materials(
+
             materials,
+
             Tr
         )
 
@@ -1664,7 +1716,8 @@ def main():
 
                         "<b>%{y}</b><br>"
 
-                        "Cp = %{x:.1f} J/kg·K"
+                        "Cp = "
+                        "%{x:.1f} J/kg·K"
 
                         "<extra></extra>"
                     )
@@ -1704,14 +1757,8 @@ def main():
                 }
             )
 
-            st.caption(
-
-                f"{len(rk)} materials have "
-                f"a valid fit at {Tr:.0f} K."
-            )
-
     # ========================================================
-    # DATA EXPORT
+    # DATA
     # ========================================================
 
     with tab_data:
@@ -1721,7 +1768,8 @@ def main():
         )
 
         st.caption(
-            "Sampled Cp–T values for the current selection."
+            "Sampled Cp–T values for the "
+            "current selection."
         )
 
         frames = []
@@ -1755,7 +1803,9 @@ def main():
         if frames:
 
             out = pd.concat(
+
                 frames,
+
                 ignore_index=True
             )
 
@@ -1795,16 +1845,17 @@ def main():
                 "the current selection."
             )
 
-    # --------------------------------------------------------
+    # ========================================================
     # FOOTER
-    # --------------------------------------------------------
+    # ========================================================
 
     st.divider()
 
     st.markdown(
 
         '<div style="text-align:center;'
-        'color:#6e6e73;font-size:0.78rem;'
+        'color:#6e6e73;'
+        'font-size:0.78rem;'
         'padding-top:0.5rem;">'
         'Specific Heat Explorer · '
         'Thermodynamic data shown within '
