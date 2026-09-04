@@ -39,7 +39,7 @@ NUMERIC = [
 
 
 # ============================================================
-# MATERIAL COLORS – unchanged (kept aesthetic)
+# MATERIAL COLORS (for charts – unchanged)
 # ============================================================
 
 MATERIAL_COLORS = [
@@ -58,7 +58,7 @@ CP_HI = 20000.0
 
 
 # ============================================================
-# CSS – FIXED SIDEBOX DROPDOWN HIGHLIGHTS
+# CSS – with new sidebar box colours
 # ============================================================
 
 st.markdown(
@@ -176,12 +176,13 @@ section[data-testid="stSidebar"] div[data-testid="stTextInput"] input::placehold
 
 
 /* ==========================================================
-   MULTISELECT MAIN BOX
+   MULTISELECT BOX – new colours
    ========================================================== */
 
+/* The main dropdown area (where chips are) */
 section[data-testid="stSidebar"] div[data-testid="stMultiSelect"] div[data-baseweb="select"] > div {
-    background: rgba(244,246,247,0.78) !important;
-    border: 1px solid #b9bfc5 !important;
+    background: #d4e4f7 !important;        /* soft slate blue */
+    border: 1px solid #8a9db0 !important;  /* slightly darker border */
     border-radius: 11px !important;
     box-shadow: inset 0 1px 0 rgba(255,255,255,0.85), 0 3px 10px rgba(0,0,0,0.035) !important;
     color: #1a1c1e !important;
@@ -189,21 +190,21 @@ section[data-testid="stSidebar"] div[data-testid="stMultiSelect"] div[data-basew
 }
 
 section[data-testid="stSidebar"] div[data-testid="stMultiSelect"] div[data-baseweb="select"] > div:focus-within {
-    border-color: #8795a2 !important;
+    border-color: #657a8c !important;
     box-shadow: 0 0 0 3px rgba(105,125,145,0.13) !important;
 }
 
 
 /* ==========================================================
-   SELECTED MATERIAL CHIPS – remove any red/black
+   SELECTED MATERIAL CHIPS – new colours
    ========================================================== */
 
 section[data-testid="stSidebar"] div[data-testid="stMultiSelect"] [data-baseweb="tag"] {
-    background: #d8dde1 !important;
-    border: 1px solid #b9c0c6 !important;
+    background: #b8cfe0 !important;        /* slightly darker steel blue */
+    border: 1px solid #7a94a8 !important;
     border-radius: 8px !important;
     color: #1a1c1e !important;
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.7) !important;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.5) !important;
 }
 
 section[data-testid="stSidebar"] div[data-testid="stMultiSelect"] [data-baseweb="tag"] span {
@@ -212,7 +213,7 @@ section[data-testid="stSidebar"] div[data-testid="stMultiSelect"] [data-baseweb=
     font-weight: 550 !important;
 }
 
-/* Fix the close (✕) icon – force it to gray, NOT red */
+/* Close icon – gray, not red */
 section[data-testid="stSidebar"] div[data-testid="stMultiSelect"] [data-baseweb="tag"] svg {
     color: #4a5058 !important;
     fill: #4a5058 !important;
@@ -227,7 +228,7 @@ section[data-testid="stSidebar"] div[data-testid="stMultiSelect"] [data-baseweb=
 
 
 /* ==========================================================
-   DROPDOWN MENU – replace red/black highlights with slate blue
+   DROPDOWN POPOVER – no red/black highlights
    ========================================================== */
 
 div[data-baseweb="popover"] {
@@ -246,7 +247,6 @@ div[data-baseweb="popover"] div[data-baseweb="menu"] {
     background: #eef0f2 !important;
 }
 
-/* Normal option */
 div[data-baseweb="popover"] [role="option"] {
     background: transparent !important;
     color: #1a1c1e !important;
@@ -255,20 +255,17 @@ div[data-baseweb="popover"] [role="option"] {
     margin: 2px 5px !important;
 }
 
-/* HOVER effect – now a soft slate blue, NOT red */
 div[data-baseweb="popover"] [role="option"]:hover {
-    background: #cbd8e6 !important;   /* soft slate blue */
+    background: #cbd8e6 !important;
     color: #0a0c0e !important;
 }
 
-/* SELECTED (highlighted) effect – darker slate blue, NOT black */
 div[data-baseweb="popover"] [role="option"][aria-selected="true"] {
-    background: #b3c9df !important;   /* deeper slate blue */
+    background: #b3c9df !important;
     color: #0a0c0e !important;
     font-weight: 650 !important;
 }
 
-/* If both selected AND hovered */
 div[data-baseweb="popover"] [role="option"][aria-selected="true"]:hover {
     background: #a3bdd6 !important;
     color: #0a0c0e !important;
@@ -657,7 +654,7 @@ st.caption(f"{len(chosen)} materials  ·  {t_lo:.0f}–{t_hi:.0f} K  ·  J kg⁻
 
 
 # ============================================================
-# MAIN GRAPH – untouched
+# MAIN GRAPH
 # ============================================================
 
 fig = go.Figure()
@@ -740,7 +737,7 @@ st.caption("Drag to zoom · double-click to reset · camera icon to export.")
 
 
 # ============================================================
-# TABS – untouched
+# TABS
 # ============================================================
 
 tab_compare, tab_materials, tab_rankings, tab_data = st.tabs(
