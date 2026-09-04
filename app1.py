@@ -58,7 +58,7 @@ CP_HI = 20000.0
 
 
 # ============================================================
-# CSS – with new sidebar box colours
+# CSS – UPDATED: sidebar boxes now blue, warning yellow
 # ============================================================
 
 st.markdown(
@@ -176,13 +176,13 @@ section[data-testid="stSidebar"] div[data-testid="stTextInput"] input::placehold
 
 
 /* ==========================================================
-   MULTISELECT BOX – new colours
+   MULTISELECT BOX – now LIGHT BLUE (no red/black)
    ========================================================== */
 
 /* The main dropdown area (where chips are) */
 section[data-testid="stSidebar"] div[data-testid="stMultiSelect"] div[data-baseweb="select"] > div {
-    background: #d4e4f7 !important;        /* soft slate blue */
-    border: 1px solid #8a9db0 !important;  /* slightly darker border */
+    background: #d4e4f7 !important;        /* soft light blue */
+    border: 1px solid #8a9db0 !important;
     border-radius: 11px !important;
     box-shadow: inset 0 1px 0 rgba(255,255,255,0.85), 0 3px 10px rgba(0,0,0,0.035) !important;
     color: #1a1c1e !important;
@@ -196,11 +196,11 @@ section[data-testid="stSidebar"] div[data-testid="stMultiSelect"] div[data-basew
 
 
 /* ==========================================================
-   SELECTED MATERIAL CHIPS – new colours
+   SELECTED MATERIAL CHIPS – steel blue
    ========================================================== */
 
 section[data-testid="stSidebar"] div[data-testid="stMultiSelect"] [data-baseweb="tag"] {
-    background: #b8cfe0 !important;        /* slightly darker steel blue */
+    background: #b8cfe0 !important;        /* steel blue */
     border: 1px solid #7a94a8 !important;
     border-radius: 8px !important;
     color: #1a1c1e !important;
@@ -308,17 +308,17 @@ div[data-testid="stMetricValue"] {
 
 
 /* ==========================================================
-   WARNING – slate blue
+   WARNING – now YELLOW (as you requested)
    ========================================================== */
 
 div[data-testid="stAlert"] {
-    background: #d9e6f2 !important;
-    border: 1px solid #7a9eb3 !important;
+    background: #fff3cd !important;        /* standard warning yellow */
+    border: 1px solid #ffc107 !important;
     border-radius: 11px !important;
 }
 
 div[data-testid="stAlert"] p {
-    color: #1a2b3c !important;
+    color: #856404 !important;             /* dark yellow/brown text */
     font-size: 0.78rem !important;
     font-weight: 500 !important;
 }
@@ -654,7 +654,7 @@ st.caption(f"{len(chosen)} materials  ·  {t_lo:.0f}–{t_hi:.0f} K  ·  J kg⁻
 
 
 # ============================================================
-# MAIN GRAPH
+# MAIN GRAPH – now with BOTH horizontal and vertical grid lines
 # ============================================================
 
 fig = go.Figure()
@@ -706,6 +706,7 @@ fig.update_layout(
         ticks="outside",
         tickcolor="#7c858e",
         tickfont=dict(size=10, color="#2c3238"),
+        showgrid=True,           # ensure vertical grid lines
         gridcolor="#d9dde1",
         zeroline=False
     ),
@@ -718,6 +719,7 @@ fig.update_layout(
         ticks="outside",
         tickcolor="#7c858e",
         tickfont=dict(size=10, color="#2c3238"),
+        showgrid=True,           # ensure horizontal grid lines
         gridcolor="#d9dde1",
         zeroline=False
     )
