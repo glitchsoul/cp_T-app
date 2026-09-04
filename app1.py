@@ -58,7 +58,7 @@ CP_HI = 20000.0
 
 
 # ============================================================
-# CSS – UPDATED: sidebar boxes now blue, warning yellow
+# CSS – COMPLETE REDESIGN OF SIDEBAR MULTISELECT
 # ============================================================
 
 st.markdown(
@@ -66,7 +66,7 @@ st.markdown(
 <style>
 
 /* ==========================================================
-   GLOBAL
+   GLOBAL – dark text, light background
    ========================================================== */
 
 html, body, .stApp, [data-testid="stAppViewContainer"], [data-testid="stMain"] {
@@ -88,10 +88,10 @@ header[data-testid="stHeader"] {
 
 
 /* ==========================================================
-   TEXT – all dark
+   TEXT – dark everywhere
    ========================================================== */
 
-.stApp p, .stApp span, .stApp label {
+.stApp p, .stApp span, .stApp label, .stApp div, .stApp h1, .stApp h2, .stApp h3, .stApp h4 {
     color: #1a1c1e !important;
 }
 
@@ -176,12 +176,12 @@ section[data-testid="stSidebar"] div[data-testid="stTextInput"] input::placehold
 
 
 /* ==========================================================
-   MULTISELECT BOX – now LIGHT BLUE (no red/black)
+   MULTISELECT BOX – COMPLETE OVERRIDE (no red/black)
    ========================================================== */
 
-/* The main dropdown area (where chips are) */
+/* The main container (the clickable area) */
 section[data-testid="stSidebar"] div[data-testid="stMultiSelect"] div[data-baseweb="select"] > div {
-    background: #d4e4f7 !important;        /* soft light blue */
+    background: #d4e4f7 !important;          /* soft light blue */
     border: 1px solid #8a9db0 !important;
     border-radius: 11px !important;
     box-shadow: inset 0 1px 0 rgba(255,255,255,0.85), 0 3px 10px rgba(0,0,0,0.035) !important;
@@ -189,31 +189,29 @@ section[data-testid="stSidebar"] div[data-testid="stMultiSelect"] div[data-basew
     min-height: 42px !important;
 }
 
+/* Focus state */
 section[data-testid="stSidebar"] div[data-testid="stMultiSelect"] div[data-baseweb="select"] > div:focus-within {
     border-color: #657a8c !important;
     box-shadow: 0 0 0 3px rgba(105,125,145,0.13) !important;
 }
 
-
-/* ==========================================================
-   SELECTED MATERIAL CHIPS – steel blue
-   ========================================================== */
-
+/* The chips (tags) – steel blue */
 section[data-testid="stSidebar"] div[data-testid="stMultiSelect"] [data-baseweb="tag"] {
-    background: #b8cfe0 !important;        /* steel blue */
+    background: #b8cfe0 !important;          /* steel blue */
     border: 1px solid #7a94a8 !important;
     border-radius: 8px !important;
     color: #1a1c1e !important;
     box-shadow: inset 0 1px 0 rgba(255,255,255,0.5) !important;
 }
 
+/* Chip text */
 section[data-testid="stSidebar"] div[data-testid="stMultiSelect"] [data-baseweb="tag"] span {
     color: #1a1c1e !important;
     font-size: 0.75rem !important;
     font-weight: 550 !important;
 }
 
-/* Close icon – gray, not red */
+/* Close (×) icon – force gray, never red */
 section[data-testid="stSidebar"] div[data-testid="stMultiSelect"] [data-baseweb="tag"] svg {
     color: #4a5058 !important;
     fill: #4a5058 !important;
@@ -247,6 +245,7 @@ div[data-baseweb="popover"] div[data-baseweb="menu"] {
     background: #eef0f2 !important;
 }
 
+/* Normal item */
 div[data-baseweb="popover"] [role="option"] {
     background: transparent !important;
     color: #1a1c1e !important;
@@ -255,17 +254,20 @@ div[data-baseweb="popover"] [role="option"] {
     margin: 2px 5px !important;
 }
 
+/* Hover – slate blue */
 div[data-baseweb="popover"] [role="option"]:hover {
     background: #cbd8e6 !important;
     color: #0a0c0e !important;
 }
 
+/* Selected (checked) – deeper slate blue */
 div[data-baseweb="popover"] [role="option"][aria-selected="true"] {
     background: #b3c9df !important;
     color: #0a0c0e !important;
     font-weight: 650 !important;
 }
 
+/* Selected + hover */
 div[data-baseweb="popover"] [role="option"][aria-selected="true"]:hover {
     background: #a3bdd6 !important;
     color: #0a0c0e !important;
@@ -308,17 +310,17 @@ div[data-testid="stMetricValue"] {
 
 
 /* ==========================================================
-   WARNING – now YELLOW (as you requested)
+   WARNING – yellow
    ========================================================== */
 
 div[data-testid="stAlert"] {
-    background: #fff3cd !important;        /* standard warning yellow */
+    background: #fff3cd !important;
     border: 1px solid #ffc107 !important;
     border-radius: 11px !important;
 }
 
 div[data-testid="stAlert"] p {
-    color: #856404 !important;             /* dark yellow/brown text */
+    color: #856404 !important;
     font-size: 0.78rem !important;
     font-weight: 500 !important;
 }
@@ -350,7 +352,7 @@ div[data-testid="stAlert"] p {
 
 
 /* ==========================================================
-   PLOTLY
+   PLOTLY – chart container
    ========================================================== */
 
 div[data-testid="stPlotlyChart"] {
@@ -628,7 +630,7 @@ if not chosen:
 
 
 # ============================================================
-# WARNING
+# WARNING (yellow)
 # ============================================================
 
 flagged = []
@@ -645,7 +647,7 @@ if flagged:
 
 
 # ============================================================
-# CHART TITLE
+# CHART TITLE & SUBTITLE (dark text)
 # ============================================================
 
 st.subheader("Cp vs Temperature")
@@ -654,7 +656,7 @@ st.caption(f"{len(chosen)} materials  ·  {t_lo:.0f}–{t_hi:.0f} K  ·  J kg⁻
 
 
 # ============================================================
-# MAIN GRAPH – now with BOTH horizontal and vertical grid lines
+# MAIN GRAPH – with horizontal & vertical grid lines
 # ============================================================
 
 fig = go.Figure()
@@ -706,7 +708,7 @@ fig.update_layout(
         ticks="outside",
         tickcolor="#7c858e",
         tickfont=dict(size=10, color="#2c3238"),
-        showgrid=True,           # ensure vertical grid lines
+        showgrid=True,
         gridcolor="#d9dde1",
         zeroline=False
     ),
@@ -719,7 +721,7 @@ fig.update_layout(
         ticks="outside",
         tickcolor="#7c858e",
         tickfont=dict(size=10, color="#2c3238"),
-        showgrid=True,           # ensure horizontal grid lines
+        showgrid=True,
         gridcolor="#d9dde1",
         zeroline=False
     )
