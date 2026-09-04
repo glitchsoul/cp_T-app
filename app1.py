@@ -58,7 +58,8 @@ CP_HI = 20000.0
 
 
 # ============================================================
-# CSS – DARKER BACKGROUND + FORCED MULTISELECT
+# CSS – SIDEBAR LIGHT (first screenshot style)
+#         MAIN BACKGROUND DARKER GRAY
 # ============================================================
 
 st.markdown(
@@ -66,11 +67,11 @@ st.markdown(
 <style>
 
 /* ==========================================================
-   GLOBAL – darker gray background (7/10)
+   GLOBAL – darker gray for main area
    ========================================================== */
 
 html, body, .stApp, [data-testid="stAppViewContainer"], [data-testid="stMain"] {
-    background: #c4c8cc !important;   /* darker gray */
+    background: #c4c8cc !important;   /* darker gray (7/10) */
     color: #1a1c1e !important;
 }
 
@@ -123,13 +124,13 @@ h3 {
 
 
 /* ==========================================================
-   SIDEBAR – slightly darker
+   SIDEBAR – LIGHT (like first screenshot)
    ========================================================== */
 
 section[data-testid="stSidebar"] {
-    background: linear-gradient(145deg, #d5d8dc, #c8ccd0) !important;
-    border-right: 1px solid #a8adb2 !important;
-    box-shadow: 7px 0 24px rgba(0,0,0,0.045) !important;
+    background: #f8f9fa !important;   /* very light gray/white */
+    border-right: 1px solid #d1d5db !important;
+    box-shadow: 2px 0 12px rgba(0,0,0,0.04) !important;
 }
 
 section[data-testid="stSidebar"] > div:first-child {
@@ -152,15 +153,14 @@ section[data-testid="stSidebar"] [data-testid="stMarkdownContainer"] p {
 
 
 /* ==========================================================
-   SEARCH BAR
+   SEARCH BAR – white background
    ========================================================== */
 
 section[data-testid="stSidebar"] div[data-testid="stTextInput"] > div > div {
-    background: rgba(250,251,252,0.72) !important;
-    border: 1px solid #a8adb2 !important;
+    background: white !important;
+    border: 1px solid #d1d5db !important;
     border-radius: 12px !important;
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.9), 0 4px 13px rgba(0,0,0,0.045) !important;
-    backdrop-filter: blur(18px) !important;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.9), 0 2px 6px rgba(0,0,0,0.03) !important;
 }
 
 section[data-testid="stSidebar"] div[data-testid="stTextInput"] input {
@@ -171,32 +171,32 @@ section[data-testid="stSidebar"] div[data-testid="stTextInput"] input {
 }
 
 section[data-testid="stSidebar"] div[data-testid="stTextInput"] input::placeholder {
-    color: #5a6068 !important;
+    color: #9ca3af !important;
 }
 
 
 /* ==========================================================
-   MULTISELECT BOX – FORCED override with !important
+   MULTISELECT BOX – white, clean
    ========================================================== */
 
 section[data-testid="stSidebar"] div[data-testid="stMultiSelect"] div[data-baseweb="select"] > div {
-    background: #d4e4f7 !important;          /* soft light blue */
-    border: 1px solid #8a9db0 !important;
+    background: white !important;
+    border: 1px solid #d1d5db !important;
     border-radius: 11px !important;
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.85), 0 3px 10px rgba(0,0,0,0.035) !important;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.85) !important;
     color: #1a1c1e !important;
     min-height: 42px !important;
 }
 
 section[data-testid="stSidebar"] div[data-testid="stMultiSelect"] div[data-baseweb="select"] > div:focus-within {
-    border-color: #657a8c !important;
+    border-color: #6b7a8a !important;
     box-shadow: 0 0 0 3px rgba(105,125,145,0.13) !important;
 }
 
-/* Chips (tags) */
+/* Chips (tags) – light blue or gray */
 section[data-testid="stSidebar"] div[data-testid="stMultiSelect"] [data-baseweb="tag"] {
-    background: #b8cfe0 !important;
-    border: 1px solid #7a94a8 !important;
+    background: #e5edf5 !important;
+    border: 1px solid #c0cbd8 !important;
     border-radius: 8px !important;
     color: #1a1c1e !important;
     box-shadow: inset 0 1px 0 rgba(255,255,255,0.5) !important;
@@ -208,7 +208,7 @@ section[data-testid="stSidebar"] div[data-testid="stMultiSelect"] [data-baseweb=
     font-weight: 550 !important;
 }
 
-/* Close (×) icon – always gray */
+/* Close (×) icon – gray */
 section[data-testid="stSidebar"] div[data-testid="stMultiSelect"] [data-baseweb="tag"] svg {
     color: #4a5058 !important;
     fill: #4a5058 !important;
@@ -223,15 +223,14 @@ section[data-testid="stSidebar"] div[data-testid="stMultiSelect"] [data-baseweb=
 
 
 /* ==========================================================
-   DROPDOWN POPOVER – no red/black
+   DROPDOWN POPOVER – light, no red/black
    ========================================================== */
 
 div[data-baseweb="popover"] {
-    background: #eef0f2 !important;
-    border: 1px solid #b9bfc5 !important;
+    background: white !important;
+    border: 1px solid #d1d5db !important;
     border-radius: 12px !important;
-    box-shadow: 0 15px 38px rgba(0,0,0,0.16) !important;
-    backdrop-filter: blur(22px) !important;
+    box-shadow: 0 15px 38px rgba(0,0,0,0.12) !important;
 }
 
 div[data-baseweb="popover"] * {
@@ -239,7 +238,7 @@ div[data-baseweb="popover"] * {
 }
 
 div[data-baseweb="popover"] div[data-baseweb="menu"] {
-    background: #eef0f2 !important;
+    background: white !important;
 }
 
 div[data-baseweb="popover"] [role="option"] {
@@ -251,18 +250,18 @@ div[data-baseweb="popover"] [role="option"] {
 }
 
 div[data-baseweb="popover"] [role="option"]:hover {
-    background: #cbd8e6 !important;
+    background: #e5edf5 !important;
     color: #0a0c0e !important;
 }
 
 div[data-baseweb="popover"] [role="option"][aria-selected="true"] {
-    background: #b3c9df !important;
+    background: #d1dde8 !important;
     color: #0a0c0e !important;
     font-weight: 650 !important;
 }
 
 div[data-baseweb="popover"] [role="option"][aria-selected="true"]:hover {
-    background: #a3bdd6 !important;
+    background: #c0d0de !important;
     color: #0a0c0e !important;
 }
 
@@ -278,7 +277,7 @@ section[data-testid="stSidebar"] [data-testid="stSlider"] [role="slider"] {
 
 
 /* ==========================================================
-   METRIC CARDS
+   METRIC CARDS – main area
    ========================================================== */
 
 div[data-testid="stMetric"] {
